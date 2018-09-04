@@ -1,0 +1,40 @@
+body {
+	
+	margin: auto;
+	width: 90%;
+	padding: 10px;
+	
+	font-family: Futura, Verdana, Geneva, sans-serif;
+	font-size: 20px;
+	text-align: center;
+}
+
+div {
+	padding: 5px;
+}
+
+.unavailable {
+	font-style: italic;
+	font-color: #636363;
+}
+
+.hidden {
+	display: none;
+}
+
+#city {
+	font-size: 32px;
+}
+
+#temperature {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#weather_icon {
+	
+}
+
+#sky {
+	font-size: 24px;
+}

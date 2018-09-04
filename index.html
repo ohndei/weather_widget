@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="functions.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	<body onload="initializePage();">
+		<div id="loadingIcon">
+			<!-- Loading image generated at loading.io -->
+			<img src="loading.gif" alt="loading please wait" title="Loading... Please wait." />
+		</div>
+		<div id="failureMessage" class="hidden">
+			Weather information for your location is currently unavailable.
+		</div>
+		<div id="main" class="hidden">
+			<div>CURRENT CONDITIONS FOR:</div>						
+			<div id="city">
+				<span class="unavailable">City not available</span>
+			</div>
+			<div id="temperature">
+				<span class="unavailable">Temperature not available</span>
+			</div>
+			<div id="weather_icon">
+				<img src="none.png" alt="No Icon Available" title="No Icon Available" />
+			</div>
+			<div id="sky">
+				<span class="unavailable">Conditions of the sky not available</span>
+			</div>
+		</div>
+	</body>
+</html>
