@@ -1,5 +1,5 @@
 /*
-Synacore Portal Software Engineer Take-Home Challenge
+Weather Widget Programming Exercise
 
 Written by Andrew Fanton on 7/27/2016
 
