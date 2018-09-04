@@ -50,26 +50,17 @@ function getWeatherAtCurrentLocation(){
 // Process data from location service
 function processLocationData( locationData ) {
 	
-	console.log( 'Location data recieved:' );
-	console.log( locationData );
-	
+	console.log( 'Location data recieved:', locationData );
 	var data = JSON.parse( locationData );
+	console.log( data ); // Log object to confirm parsing was successful
 	
-	if ( data && 
-		 data.location && 
-		 !isNaN( data.location.latitude ) && 
-		 !isNaN( data.location.longitude )){
-		
-		// Populate city
-		if ( data.city ) {
-			setElementContents( 'city', data.city );
-		}
+	if ( data && !isNaN( data.latitude ) && !isNaN( data.longitude )){
 		
 		// Use location data to determine weather
 		var weatherServiceUrl = SERVICE_PROVIDER_HOST + WEATHER_SERVICE_PATH;
-		weatherServiceUrl += data.location.latitude;
+		weatherServiceUrl += data.latitude;
 		weatherServiceUrl += ',';
-		weatherServiceUrl += data.location.longitude;
+		weatherServiceUrl += data.longitude;
 		
 		httpGet( weatherServiceUrl, processWeatherData );
 	
@@ -81,14 +72,14 @@ function processLocationData( locationData ) {
 // Process data from weather service
 function processWeatherData( weatherData ) {
 	
-	console.log( 'Weather data recieved:' );
-	console.log( weatherData );
-	
+	console.log( 'Weather data recieved:', weatherData );
 	var data = JSON.parse( weatherData );
+	console.log( data ); // Log object to confirm parsing was successful
 	
-	// Populate temperature and weather
+	// Don't proceed unless core data is available
 	if ( data && data.main && data.weather ) {
 		
+		// Display temperature
 		if ( data.main.temp ) {
 			
 			var temperature = Math.round( convertToFahrenheit( data.main.temp ));
@@ -110,6 +101,7 @@ function processWeatherData( weatherData ) {
 			}
 		}
 		
+		// Display weather information
 		if ( data.weather[0].icon ) {
 			setElementContents( 'weather_icon', createWeatherIcon( data.weather[0].icon, data.weather[0].description ));
 		}
@@ -118,6 +110,11 @@ function processWeatherData( weatherData ) {
 			setElementContents( 'sky', data.weather[0].main );
 		}
 		
+		// Display city name
+		if ( data.name ) {
+			setElementContents( 'city', data.name );
+		}
+
 		showMainContent();
 		
 	} else {
